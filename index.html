@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>UnitedHealthCare</title>
+<!--<link href="css/schedule_appointment.css" rel="stylesheet" type="text/css" />-->
+
+<link href="schedule_appointment.css" rel="stylesheet" type="text/css" />
+
+<!-- hide/show span -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<!-- hide/show span END -->
+
+<!-- fancybox stylesheet and js -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- Add jQuery library -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+	<!-- Add mousewheel plugin (this is optional) -->
+	<!--<script type="text/javascript" src="lib/jquery.mousewheel-3.0.6.pack.js"></script>-->
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="javscripts/jquery.fancybox.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery.fancybox.css" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="javscripts/helpers/jquery.fancybox-buttons.css?v=2.0.3" />
+	<script type="text/javascript" src="javscripts/helpers/jquery.fancybox-buttons.js?v=2.0.3"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="javscripts/helpers/jquery.fancybox-thumbs.css?v=2.0.3" />
+	<script type="text/javascript" src="javscripts/helpers/jquery.fancybox-thumbs.js?v=2.0.3"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				Simple image gallery. Use default settings
+			*/
+
+			$('.fancybox').fancybox();
+
+			/*
+				Different effects
+			*/
+
+			// Change title type, overlay opening speed and opacity
+			$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedIn : 500,
+						opacity : 0.95
+					}
+				}
+			});
+
+			// Disable opening and closing animations, change title type
+			$(".fancybox-effects-b").fancybox({
+				openEffect  : 'none',
+				closeEffect	: 'none',
+
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				}
+			});
+
+			// Set custom style, close if clicked, change title type and overlay color
+			$(".fancybox-effects-c").fancybox({
+				wrapCSS    : 'fancybox-custom',
+				closeClick : true,
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						css : {
+							'background-color' : '#eee'	
+						}
+					}
+				}
+			});
+
+			// Remove padding, set opening and closing animations, close if clicked and disable overlay
+			$(".fancybox-effects-d").fancybox({
+				padding: 0,
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
+				helpers : {
+					overlay : null
+				}
+			});
+
+			/*
+				Button helper. Disable animations, hide close button, change title type and content
+			*/
+
+			$('.fancybox-buttons').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					buttons	: {}
+				},
+
+				afterLoad : function() {
+					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				}
+			});
+
+
+			/*
+				Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+			*/
+
+			$('.fancybox-thumbs').fancybox({
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+				arrows    : false,
+				nextClick : true,
+
+				helpers : { 
+					thumbs : {
+						width  : 50,
+						height : 50
+					}
+				}
+			});
+
+		});
+	</script>
+	<style type="text/css">
+		.fancybox-custom .fancybox-outer {
+			box-shadow: 0 0 50px #222;
+		}
+	</style>
+<!-- fancybox END -->
+
+
+</head>
+
+<body>
+	<div id="wrapper">
+	
+	<header class="header">
+		<div id="container_logo">
+			<img src="images/uhc_logo.png" alt="" border="none" />		</div>	
+	</header>
+	
+	<br/><br/>
+
+	<!-- Breadcrumbs BEGIN -->
+	<div class="menu gap">                                       
+		<ul class="breadcrumb">                        
+			<li><a href="#">1: Register</a></li>                        
+			<li><a href="#">2: Learn</a></li>                        
+			<li><a href="#">3: Take Action</a></li>  
+			<!--  Extra step                   
+			<li><a href="#">4: step</a></li>    
+			--->                    
+			<li><a href="#">&nbsp;</a></li>  <!-- DO NOT REMOVE THIS LINE -->             
+		</ul>                
+	</div>        
+	
+	<div class="gap" style="margin-top:50px">
+	<h1 class="center">Schedule an Appointment to Get Tested</h1>
+    <p class="center pb30 fs20">Complete the steps below to schedule an appointment to get tested.</p>
+	</div>
+	
+	<div id="container">
+	<div class="leftpos">
+	
+		<h2>Select a Lab Testing Center</h2>
+		
+		<ul class="address">
+			<li class="tcenter"><input type="radio" name="gmap" /> <img src="images/pin01.gif" border="none" />LabCorp, 100 Main Street, Reston, VA 20190</li>
+			<li class="tcenter"><input type="radio" name="gmap" /> <img src="images/pin02.gif" border="none" />LabCorp, 55 Broad Street, Reston, VA 20190</li>
+			<li class="tcenter"><input type="radio" name="gmap" /> <img src="images/pin03.gif" border="none" />LabCorp, 1874 Red Street, Reston, VA 20190</li>
+		</ul>
+		
+		<span class="tab"><a class="fancybox" href="#error">View More Locations</a></span>
+		
+<div style="display: none;">
+		<div id="inline1" style="width:300px;">
+			<p>To Be Implemented</p>
+		</div>
+	</div>
+	
+		<p class="gap">When would you like to get tested?</p>
+		
+		<span class="date">Date <input type="text" size="10px" class="roundinput_sm" /><img src="images/calendar.png" border="none" /></span>
+		<span class="time">Time of Day <input type="radio" name="ampm" />AM &nbsp;&nbsp; <input type="radio" name="ampm" />PM </span>
+		
+		<p class="gap"><button class="myButton">Search for Available<br/>Appointment</button> <span class="blue">OR</span><a class="fancybox myButton" href="#error">Walk-in without an<br/>Appointment</a></p>
+			<div class="hidden">
+				<h2>Select an Appointment Time</h2>
+		
+				<ul class="address">
+					<li class="address"><input type="radio" name="aptime" /> Monday, July 7, 2011 - 9:00 AM EST</li>
+					<li class="address"><input type="radio" name="aptime" /> Monday, July 7, 2011 - 10:00 AM EST</li>
+					<li class="address"><input type="radio" name="aptime" /> Monday, July 7, 2011 - 10:30 AM EST</li>
+					<li class="address"><input type="radio" name="aptime" /> Monday, July 7, 2011 - 11:00 AM EST</li>
+				</ul>
+		
+				<p><a class="fancybox myButton_lg" href="#error">Schedule Appointment</a></p>
+			</div>
+		</div>
+		
+<script>
+function doIt() {  
+	$("div.hidden").show("slow");
+}
+/* can pass in function name */
+$("button").click(doIt);
+
+$("form").submit(function () {  
+	if ($("input").val() == "yes") {    
+		$("p").show(4000, function () {      
+			$(this).text("Ok, DONE! (now showing)");    
+		});  
+	}  
+	$("div.hidden").hide("fast");  
+	/* to stop the submit */  
+	return false;
+});
+</script>
+		
+		<div class="rightpos">
+		<p><img src="images/goggle_map.png" border="none" /></p>
+		<p><div id="container_sm">
+		<p><strong>Enter a New Zip Code</strong></p>
+		<p><input type="text" name="" class="roundinput_lg" /></p>
+		<p><a class="fancybox myButton_md" href="#error">Search</a></p>
+		</div></p>
+		</div>
+	</div>
+	</div>
+	<div class="mdlogo">
+		Powered by&nbsp;<img src="images/medivo_logo.png" border="none" />
+	</div>
+	
+	<div id="footer">
+		<a href="#error" class="fancybox footer">Terms and Conditions</a> &bull; <a href="#error" class="fancybox footer">Privacy Notice</a> &bull; <a href="#error" class="fancybox footer">Frequently Asked Questions</a> &bull; <a href="#error" class="fancybox footer">Feedback</a>
+	</div>
+</body>
+</html>
