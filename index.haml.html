@@ -1,0 +1,276 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=iso-8859-1", "http-equiv" => "Content-Type"}/
+    %title UnitedHealthCare
+    / <link href="css/schedule_appointment.css" rel="stylesheet" type="text/css" />
+    %link{:href => "schedule_appointment.css", :rel => "stylesheet", :type => "text/css"}/
+    / hide/show span
+    %script{:src => "http://code.jquery.com/jquery-latest.js"}
+    / hide/show span END
+    / fancybox stylesheet and js
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    / Add jQuery library
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js", :type => "text/javascript"}
+    / Add mousewheel plugin (this is optional)
+    / <script type="text/javascript" src="lib/jquery.mousewheel-3.0.6.pack.js"></script>
+    / Add fancyBox main JS and CSS files
+    %script{:src => "javscripts/jquery.fancybox.js", :type => "text/javascript"}
+    %link{:href => "jquery.fancybox.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+    / Add Button helper (this is optional)
+    %link{:href => "javscripts/helpers/jquery.fancybox-buttons.css?v=2.0.3", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "javscripts/helpers/jquery.fancybox-buttons.js?v=2.0.3", :type => "text/javascript"}
+    / Add Thumbnail helper (this is optional)
+    %link{:href => "javscripts/helpers/jquery.fancybox-thumbs.css?v=2.0.3", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "javscripts/helpers/jquery.fancybox-thumbs.js?v=2.0.3", :type => "text/javascript"}
+    :javascript
+      $(document).ready(function() {
+      	/*
+      		Simple image gallery. Use default settings
+      	*/
+
+      	$('.fancybox').fancybox();
+
+      	/*
+      		Different effects
+      	*/
+
+      	// Change title type, overlay opening speed and opacity
+      	$(".fancybox-effects-a").fancybox({
+      		helpers: {
+      			title : {
+      				type : 'outside'
+      			},
+      			overlay : {
+      				speedIn : 500,
+      				opacity : 0.95
+      			}
+      		}
+      	});
+
+      	// Disable opening and closing animations, change title type
+      	$(".fancybox-effects-b").fancybox({
+      		openEffect  : 'none',
+      		closeEffect	: 'none',
+
+      		helpers : {
+      			title : {
+      				type : 'over'
+      			}
+      		}
+      	});
+
+      	// Set custom style, close if clicked, change title type and overlay color
+      	$(".fancybox-effects-c").fancybox({
+      		wrapCSS    : 'fancybox-custom',
+      		closeClick : true,
+
+      		helpers : {
+      			title : {
+      				type : 'inside'
+      			},
+      			overlay : {
+      				css : {
+      					'background-color' : '#eee'	
+      				}
+      			}
+      		}
+      	});
+
+      	// Remove padding, set opening and closing animations, close if clicked and disable overlay
+      	$(".fancybox-effects-d").fancybox({
+      		padding: 0,
+
+      		openEffect : 'elastic',
+      		openSpeed  : 150,
+
+      		closeEffect : 'elastic',
+      		closeSpeed  : 150,
+
+      		closeClick : true,
+
+      		helpers : {
+      			overlay : null
+      		}
+      	});
+
+      	/*
+      		Button helper. Disable animations, hide close button, change title type and content
+      	*/
+
+      	$('.fancybox-buttons').fancybox({
+      		openEffect  : 'none',
+      		closeEffect : 'none',
+
+      		prevEffect : 'none',
+      		nextEffect : 'none',
+
+      		closeBtn  : false,
+
+      		helpers : {
+      			title : {
+      				type : 'inside'
+      			},
+      			buttons	: {}
+      		},
+
+      		afterLoad : function() {
+      			this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+      		}
+      	});
+
+
+      	/*
+      		Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+      	*/
+
+      	$('.fancybox-thumbs').fancybox({
+      		prevEffect : 'none',
+      		nextEffect : 'none',
+
+      		closeBtn  : false,
+      		arrows    : false,
+      		nextClick : true,
+
+      		helpers : { 
+      			thumbs : {
+      				width  : 50,
+      				height : 50
+      			}
+      		}
+      	});
+
+      });
+	    :css
+      .fancybox-custom .fancybox-outer {
+      	box-shadow: 0 0 50px #222;
+      }
+	    / fancybox END
+  %body
+    #wrapper
+      %header.header
+        #container_logo
+          %img{:alt => "", :border => "none", :src => "images/uhc_logo.png"}/
+      %br/
+      %br/
+      / Breadcrumbs BEGIN
+      .menu.gap
+        %ul.breadcrumb
+          %li
+            %a{:href => "#"} 1: Register
+          %li
+            %a{:href => "#"} 2: Learn
+          %li
+            %a{:href => "#"} 3: Take Action
+          /
+            Extra step
+            <li><a href="#">4: step</a></li>
+            \-
+          %li
+            %a{:href => "#"}  
+          / DO NOT REMOVE THIS LINE
+      .gap{:style => "margin-top:50px"}
+        %h1.center Schedule an Appointment to Get Tested
+        %p.center.pb30.fs20 Complete the steps below to schedule an appointment to get tested.
+      #container
+        .leftpos
+          %h2 Select a Lab Testing Center
+          %ul.address
+            %li.tcenter
+              %input{:name => "gmap", :type => "radio"}/
+              = succeed "LabCorp," do
+                %img{:border => "none", :src => "images/pin01.gif"}/
+              100 Main Street, Reston, VA 20190
+            %li.tcenter
+              %input{:name => "gmap", :type => "radio"}/
+              = succeed "LabCorp," do
+                %img{:border => "none", :src => "images/pin02.gif"}/
+              55 Broad Street, Reston, VA 20190
+            %li.tcenter
+              %input{:name => "gmap", :type => "radio"}/
+              = succeed "LabCorp," do
+                %img{:border => "none", :src => "images/pin03.gif"}/
+              1874 Red Street, Reston, VA 20190
+          %span.tab
+            %a.fancybox{:href => "#error"} View More Locations
+          %div{:style => "display: none;"}
+            #inline1{:style => "width:300px;"}
+              %p To Be Implemented
+          %p.gap When would you like to get tested?
+          %span.date
+            Date
+            %input.roundinput_sm{:size => "10px", :type => "text"}/
+            %img{:border => "none", :src => "images/calendar.png"}/
+          %span.time
+            Time of Day
+            = succeed "AM" do
+              %input{:name => "ampm", :type => "radio"}/
+            \  
+            = succeed "PM" do
+              %input{:name => "ampm", :type => "radio"}/
+          %p.gap
+            %button.myButton
+              Search for Available
+              %br>/
+              Appointment
+            %span.blue OR
+            %a.fancybox.myButton{:href => "#error"}
+              Walk-in without an
+              %br>/
+              Appointment
+          .hidden
+            %h2 Select an Appointment Time
+            %ul.address
+              %li.address
+                %input{:name => "aptime", :type => "radio"}/
+                Monday, July 7, 2011 - 9:00 AM EST
+              %li.address
+                %input{:name => "aptime", :type => "radio"}/
+                Monday, July 7, 2011 - 10:00 AM EST
+              %li.address
+                %input{:name => "aptime", :type => "radio"}/
+                Monday, July 7, 2011 - 10:30 AM EST
+              %li.address
+                %input{:name => "aptime", :type => "radio"}/
+                Monday, July 7, 2011 - 11:00 AM EST
+            %p
+              %a.fancybox.myButton_lg{:href => "#error"} Schedule Appointment
+        :javascript
+          function doIt() {  
+          	$("div.hidden").show("slow");
+          }
+          /* can pass in function name */
+          $("button").click(doIt);
+          
+          $("form").submit(function () {  
+          	if ($("input").val() == "yes") {    
+          		$("p").show(4000, function () {      
+          			$(this).text("Ok, DONE! (now showing)");    
+          		});  
+          	}  
+          	$("div.hidden").hide("fast");  
+          	/* to stop the submit */  
+          	return false;
+          });
+        .rightpos
+          %p
+            %img{:border => "none", :src => "images/goggle_map.png"}/
+          %p
+            #container_sm
+              %p
+                %strong Enter a New Zip Code
+              %p
+                %input.roundinput_lg{:name => "", :type => "text"}/
+              %p
+                %a.fancybox.myButton_md{:href => "#error"} Search
+    .mdlogo
+      Powered by 
+      %img{:border => "none", :src => "images/medivo_logo.png"}/
+    #footer
+      %a.fancybox.footer{:href => "#error"} Terms and Conditions
+      \•
+      %a.fancybox.footer{:href => "#error"} Privacy Notice
+      \•
+      %a.fancybox.footer{:href => "#error"} Frequently Asked Questions
+      \•
+      %a.fancybox.footer{:href => "#error"} Feedback
